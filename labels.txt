@@ -1,0 +1,2 @@
+0 Valid
+1 Not_valid

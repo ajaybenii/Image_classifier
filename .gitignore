@@ -1,0 +1,13 @@
+
+# Environment-related
+Pipfile
+Pipfile.lock
+.venv
+
+# Others
+notebooks/**
+
+# System files
+.DS_Store
+.ipynb_checkpoints/**
+**__pycache__**
