@@ -7,11 +7,9 @@ import numpy as np
 import uvicorn
 import io
 import requests
-import base64
 import PIL
 
 from PIL import Image, ImageOps
-import tensorflow as tf
 from keras.models import load_model
 import urllib.request
 from fastapi import FastAPI, Request
@@ -23,12 +21,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = [
-    "https://ai.propvr.tech",
-    "http://ai.propvr.tech",
-    "https://ai.propvr.tech/classify",
-    "http://ai.propvr.tech/classify" 
-    ]
+# origins = [
+#     "https://ai.propvr.tech",
+#     "http://ai.propvr.tech",
+#     "https://ai.propvr.tech/classify",
+#     "http://ai.propvr.tech/classify" 
+#     ]
 
 
 '''
@@ -41,13 +39,13 @@ origins = [
     "http://getedge.glitch.me" 
     ]'''
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 @app.get("/")
 async def root():
