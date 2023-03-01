@@ -1,6 +1,9 @@
-uvicorn==0.13.4
-Pillow==8.1.1
-python-multipart==0.0.5
-tensorflow-cpu==2.4.1
-numpy==1.19.5
-fastapi==0.63.0
+opencv-python-headless
+numpy
+tensorflow-cpu
+pandas
+fastapi
+PyYAML
+uvicorn
+python-multipart
+pillow

@@ -61,7 +61,7 @@ model = load_model('keras_model.h5',compile=False)
 np.set_printoptions(suppress=True)
 
 
-# Load the model
+# Load the model for other category images
 model_path = "keras_model_new.h5"
 m_path = os.path.basename(model_path)
 
