@@ -131,6 +131,7 @@ def predict(image: Image.Image):
                             "label": str(labels[top5])
                         }
                     ],
+
                     "top_prediction":{
                         "confidence": str(result[0][index_max]),
                             "label": str(labels[index_max])
@@ -147,23 +148,37 @@ def predict(image: Image.Image):
         index = np.argmax(prediction)
         class_name = class_names[index]
         confidence_score = prediction[0][index]
-
-        # Print prediction and confidence score
-        # print("Class:", class_name[2:], end="")
-        # print("Confidence Score:", confidence_score)
-
-        # obj_coordinates = class_name[2:]
+        
         if class_name[2:] == "Not_valid\n":
 
-            obj_coordinates = "Not_Valid"
+            label = "Not_Valid"
             score = confidence_score*100
 
         else:
-            obj_coordinates = "Valid"
+            label = "Non_Related"
             score = confidence_score*100
         
-        return {"response" : obj_coordinates,
-                "confidence_score": score}
+        
+        return {
+        "response": {
+            "solutions": {
+                "re_roomtype_eu_v2": {
+                    "predictions": [
+                                        {
+                                        "confidence": score,
+                                        "response" : label
+                                        }
+                                    ],
+                                    "top_prediction":{
+                                        "confidence": score,
+                                            "label": label
+                                    }
+                                }
+                         }
+                    }
+                }
+    
+
 
     return prediction_dict
 
