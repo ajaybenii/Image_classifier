@@ -58,7 +58,7 @@ model = load_model('keras_model.h5',compile=False)
 np.set_printoptions(suppress=True)
 
 # Load the model for checking images is valid or not
-model_path = "keras_model_final.h5"
+model_path = "keras_model_new2.h5"
 m_path = os.path.basename(model_path)
 model_other = load_model(m_path, compile=False)
 
@@ -182,7 +182,32 @@ def predict_img(image: Image.Image):
             }
         }
 
-        return prediction_dict
+        if labels[top1] == 'Non_Related' and top_five[0][0]*100 > 90:
+
+            prediction_dict= {
+                    "response": {
+                        "solutions": {
+                            "re_roomtype_eu_v2": {
+                                
+                                "predictions": [
+                                                    {
+                                                    "confidence": str(top_five[0][0]),
+                                                    "response" : "False"
+                                                    }
+                                                ],
+                                                "top_prediction":{
+                                                    "confidence": str(top_five[0][0]),
+                                                        "label": "False"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+            return prediction_dict
+        
+        else:
+            
+            return prediction_dict
 
 
 @app.get("/predict_from_url")
