@@ -7,3 +7,4 @@ PyYAML
 uvicorn
 python-multipart
 pillow
+nsfw_detector
