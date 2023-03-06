@@ -99,7 +99,7 @@ def predict_img(image: Image.Image):
                      "predictions": [
                                         {
                                         "confidence": str(confidence_score),
-                                        "response" : "False"
+                                        "label" : "False"
                                         }
                                     ],
                                     "top_prediction":{
@@ -192,7 +192,7 @@ def predict_img(image: Image.Image):
                                 "predictions": [
                                                     {
                                                     "confidence": str(top_five[0][0]),
-                                                    "response" : "False"
+                                                    "label" : "False"
                                                     }
                                                 ],
                                                 "top_prediction":{
@@ -206,7 +206,7 @@ def predict_img(image: Image.Image):
             return prediction_dict
         
         else:
-            
+
             return prediction_dict
 
 
@@ -234,7 +234,7 @@ async def predict_image(image_url: str):
                      "predictions": [
                                         {
                                         "confidence": str(final_result),
-                                        "response" : "not_valid"
+                                        "label" : "False"
                                         }
                                     ],
                                     "top_prediction":{
