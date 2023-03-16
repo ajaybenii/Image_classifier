@@ -22,35 +22,19 @@ app = FastAPI(
     description="classify images into different categories")
 
 
-# origins = [
-#     "https://ai.propvr.tech",
-#     "http://ai.propvr.tech",
-#     "https://getedge.glitch.me",
-#     "http://getedge.glitch.me",
-#     "https://getedge.glitch.me/*",
-#     "http://getedge.glitch.me/*",
-#     "https://app.smartagent.ae",
-#     "https://localhost:8081",
-#     "https://uatapp.smartagent.ae",
-#     "http://app.smartagent.ae",
-#     "http://localhost:8081",
-#     "http://uatapp.smartagent.ae",
-#     "https://app.smartagent.ae/*",
-#     "https://localhost:8081/*",
-#     "https://uatapp.smartagent.ae/*",
-#     "http://app.smartagent.ae/*",
-#     "http://localhost:8081/*",
-#     "http://uatapp.smartagent.ae/*"
-#     ]
-
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+origins = [
+    "https://ai.propvr.tech",
+    "http://ai.propvr.tech",
+    "https://ai.propvr.tech/classify",
+    "http://ai.propvr.tech/classify" 
+    ]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Load the model for irrelavent images(+18)
