@@ -8,34 +8,41 @@ import requests
 import numpy as np
 from io import BytesIO
 from PIL import Image, ImageOps
-from keras.models import load_model
 from fastapi import FastAPI
 
 from typing import Optional
 from pydantic import BaseModel
 from nsfw_detector import predict
+from keras.models import load_model
 from fastapi.middleware.cors import CORSMiddleware
 
 
-app = FastAPI()
+app = FastAPI(
+    title="Image Classification",
+    description="classify images into different categories")
 
 
-#origins = [
+# origins = [
 #     "https://ai.propvr.tech",
 #     "http://ai.propvr.tech",
-#     "https://ai.propvr.tech/classify",
-#     "http://ai.propvr.tech/classify" 
-# ]
-
-# '''
-# origins = [
-#     "https://ai.propvr.tech/classify",
-#     "http://ai.propvr.tech/classify",
+#     "https://getedge.glitch.me",
+#     "http://getedge.glitch.me",
 #     "https://getedge.glitch.me/*",
 #     "http://getedge.glitch.me/*",
-#     "https://getedge.glitch.me",
-#     "http://getedge.glitch.me"]
-# '''
+#     "https://app.smartagent.ae",
+#     "https://localhost:8081",
+#     "https://uatapp.smartagent.ae",
+#     "http://app.smartagent.ae",
+#     "http://localhost:8081",
+#     "http://uatapp.smartagent.ae",
+#     "https://app.smartagent.ae/*",
+#     "https://localhost:8081/*",
+#     "https://uatapp.smartagent.ae/*",
+#     "http://app.smartagent.ae/*",
+#     "http://localhost:8081/*",
+#     "http://uatapp.smartagent.ae/*"
+#     ]
+
 
 # app.add_middleware(
 #     CORSMiddleware,
@@ -43,14 +50,14 @@ app = FastAPI()
 #     allow_credentials=True,
 #     allow_methods=["*"],
 #     allow_headers=["*"],
-#)
+# )
 
 
 # Load the model for irrelavent images(+18)
 model_nsfw = predict.load_model('./nsfw_mobilenet2.224x224.h5')
 
 # Load the model for image Label(Classification)
-model = load_model('keras_model.h5',compile=False)
+model = load_model('keras_model_tm1.h5',compile=False)
 
 #-------------------------------++++++++--------------------------------------------------
 
@@ -114,7 +121,8 @@ def predict_img(image: Image.Image):
         return prediction_dict
     else:
         #labels = ['Bathroom','Room-bedroom','Living_Room','Outdoor_building','Kitchen','Non_Related','Garden','Plot','Empty_room']
-        labels = ['Bathroom','Bedroom','Living Room','Exterior View','Kitchen','Non_Related','Garden','Plot','Room','Swimming Pool','Gym','Parking','Map Location','Balcony','Floor Plan']
+        labels = ['balcony','bathroom','bedroom','corridor','dining_room','exterior_view','gym','kitchen','lift','living_room','parking','stairs','swimming_pool','utility_room','others']
+
 
         data = np.ndarray(shape=(1,224, 224, 3), dtype=np.float32)
         size = (224, 224)
@@ -182,7 +190,7 @@ def predict_img(image: Image.Image):
             }
         }
 
-        if labels[top1] == 'Non_Related' and top_five[0][0]*100 > 90:
+        if labels[top1] == 'others' and top_five[0][0]*100 > 80:
 
             prediction_dict= {
                     "response": {
