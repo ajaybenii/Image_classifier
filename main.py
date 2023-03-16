@@ -106,12 +106,12 @@ def predict_img(image: Image.Image):
                      "predictions": [
                                         {
                                         "confidence": str(confidence_score),
-                                        "label" : "False"
+                                        "label" : "false"
                                         }
                                     ],
                                     "top_prediction":{
                                         "confidence": str(confidence_score),
-                                            "label": "False"
+                                            "label": "false"
                                     }
                                 }
                             }
@@ -200,12 +200,12 @@ def predict_img(image: Image.Image):
                                 "predictions": [
                                                     {
                                                     "confidence": str(top_five[0][0]),
-                                                    "label" : "False"
+                                                    "label" : "false"
                                                     }
                                                 ],
                                                 "top_prediction":{
                                                     "confidence": str(top_five[0][0]),
-                                                        "label": "False"
+                                                        "label": "false"
                                                 }
                                             }
                                         }
@@ -242,12 +242,12 @@ async def predict_image(image_url: str):
                      "predictions": [
                                         {
                                         "confidence": str(final_result),
-                                        "label" : "False"
+                                        "label" : "false"
                                         }
                                     ],
                                     "top_prediction":{
                                         "confidence": str(final_result),
-                                            "label": "False"
+                                            "label": "false"
                                     }
                                 }
                             }
