@@ -57,7 +57,7 @@ app = FastAPI(
 model_nsfw = predict.load_model('./nsfw_mobilenet2.224x224.h5')
 
 # Load the model for image Label(Classification)
-model = load_model('keras_model_tm1.h5',compile=False)
+model = load_model('keras_model.h5',compile=False)
 
 #-------------------------------++++++++--------------------------------------------------
 
@@ -121,7 +121,7 @@ def predict_img(image: Image.Image):
         return prediction_dict
     else:
         #labels = ['Bathroom','Room-bedroom','Living_Room','Outdoor_building','Kitchen','Non_Related','Garden','Plot','Empty_room']
-        labels = ['balcony','bathroom','bedroom','corridor','dining_room','exterior_view','gym','kitchen','lift','living_room','parking','stairs','swimming_pool','utility_room','others']
+        labels = ['Bathroom','Bedroom','Living Room','Exterior View','Kitchen','Non_Related','Garden','Plot','Room','Swimming Pool','Gym','Parking','Map Location','Balcony','Floor Plan']
 
 
         data = np.ndarray(shape=(1,224, 224, 3), dtype=np.float32)
@@ -190,7 +190,7 @@ def predict_img(image: Image.Image):
             }
         }
 
-        if labels[top1] == 'others' and top_five[0][0]*100 > 80:
+        if labels[top1] == 'Non_Related' and top_five[0][0]*100 > 80:
 
             prediction_dict= {
                     "response": {
