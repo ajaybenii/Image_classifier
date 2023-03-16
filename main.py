@@ -22,19 +22,19 @@ app = FastAPI(
     description="classify images into different categories")
 
 
-origins = [
-    "https://ai.propvr.tech",
-    "http://ai.propvr.tech",
-    "https://ai.propvr.tech/classify",
-    "http://ai.propvr.tech/classify" 
-    ]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# origins = [
+#     "https://ai.propvr.tech",
+#     "http://ai.propvr.tech",
+#     "https://ai.propvr.tech/classify",
+#     "http://ai.propvr.tech/classify" 
+#     ]
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 
 # Load the model for irrelavent images(+18)
